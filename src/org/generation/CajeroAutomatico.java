@@ -82,21 +82,24 @@ public class CajeroAutomatico  {
 						
 						System.out.println("¿Quieres donar $" + DONACION_CH30 + " para la graduación de ch30? (Y/N)"); //Preguntamos al usuario si quiere donar
 						donar = myScan2.next(); //Guardamos la respuesta del usuario
+						myScan2.nextLine();
 						
 						if( ( donar.charAt(0) == 'y' || donar.charAt(0) == 'Y' ) ) { //Si el usuario quiere donar
 							if( this.getSaldo() < DONACION_CH30 ) { //Si el saldo es menor a la donación
 								System.out.println("No puedes donar, no tienes saldo suficiente"); //No se puede donar
-								Date fechaMovimiento = new Date(); //Guardamos la fecha actual
-								//Guardamos el movimiento en el arreglo de movimientos
-								this.setUltimoMoviemiento( fechaMovimiento + MOVIMIENTO_RETIRO + this.formateDouble( saldoRetirar ) + DONACION ); 
-							
+								continue; //Le volvemos a preguntar al usuaio
 							}else { //Si el usuario tiene el saldo suficiente para donar
 								this.setSaldo( this.getSaldo() - DONACION_CH30 ); //Le restamos la donacion al saldo
 								Date fechaMovimiento = new Date();//Guardamos la fecha actual
 								//Guardamos el movimiento en el arreglo de movimientos
-								this.setUltimoMoviemiento( fechaMovimiento + MOVIMIENTO_RETIRO + this.formateDouble( saldoRetirar ) );
-							
+								this.setUltimoMoviemiento( fechaMovimiento + MOVIMIENTO_RETIRO + this.formateDouble( saldoRetirar ) + DONACION );
+								wasWithdrew = true;
 							}
+						}else { //Si el usuario no quiere donar
+							Date fechaMovimiento = new Date(); //Guardamos la fecha actual
+							//Guardamos el movimiento en el arreglo de movimientos
+							this.setUltimoMoviemiento( fechaMovimiento + MOVIMIENTO_RETIRO + this.formateDouble( saldoRetirar ) ); 
+							wasWithdrew = true;
 						}
 						System.out.println( "Retiro exitoso");
 						
