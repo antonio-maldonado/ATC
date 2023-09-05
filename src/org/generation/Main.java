@@ -15,7 +15,7 @@ public class Main {
 					             " 2) Hacer depósitos \n"
 					           + " 3) Consultar saldo \n"
 					           + " 4) Quejas \n"
-					           + " 5) Ver últimos rendimientos\n"
+					           + " 5) Ver últimos Movimientos\n"
 					           + " 9) Salir del cajero");
 			 
 			
