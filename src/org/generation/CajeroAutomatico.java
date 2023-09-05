@@ -47,7 +47,7 @@ public class CajeroAutomatico  {
 	}
 	
 	private void continuar( Scanner myScan )  { 									//Funcion para pausar después de un proceso
-		System.out.println( "Presione cualquier ENTER para continuar..." );
+		System.out.println( "Presione ENTER para continuar..." );
 		myScan.nextLine();															//Consumimos el salto de linea
 
 		this.limpiarConsola();
