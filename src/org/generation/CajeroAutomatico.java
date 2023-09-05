@@ -41,13 +41,16 @@ public class CajeroAutomatico  {
 		return String.format("%.2f", number );
 	}
 	
+	private void limpiarConsola() {												
+		System.out.print("\033[H\033[2J");  										//Limpiar consola
+	    System.out.flush(); 
+	}
 	
 	private void continuar( Scanner myScan )  { 									//Funcion para pausar después de un proceso
 		System.out.println( "Presione cualquier tecla para continuar..." );
 		myScan.nextLine();
-		System.out.print("\033[H\033[2J");  										//Limpiar consola
-	    System.out.flush(); 
-		
+
+		this.limpiarConsola();
 	}
 
 	
@@ -56,6 +59,8 @@ public class CajeroAutomatico  {
 		boolean wasWithdrew = false;  												//Variable si el usuario ya retiró su dinero
 		double saldoRetirar;														//Variable para almacenar el saldo a retirar
 		String donar = "n";															//Variable para saber si el usuario quiere donar
+		
+		this.limpiarConsola();
 		
 		if( this.getSaldo() >= MAX_AMOUNT_WITHDRAW ) {  							//Si el saldo es igual o mayor a la máxima cantidad que se  puede retirar
 			saldoDisponibleRetirar = MAX_AMOUNT_WITHDRAW; 							//La máxima cantidad que se puede retirar (6_000)
@@ -87,8 +92,8 @@ public class CajeroAutomatico  {
 						
 						System.out.println("¿Quieres donar $" + DONACION_CH30 +
 								" para la graduación de ch30? (Y/N)"); 				//Preguntamos al usuario si quiere donar
-						donar = myScan2.nextLine(); 									//Guardamos la respuesta del usuario
-						//myScan2.nextLine();
+						donar = myScan2.next(); 									//Guardamos la respuesta del usuario
+						myScan2.nextLine();
 						
 						if( ( donar.charAt(0) == 'y' || donar.charAt(0) == 'Y' ) ){ //Si el usuario quiere donar
 							if( this.getSaldo() < DONACION_CH30 ) { 				//Si el saldo es menor a la donación
@@ -134,7 +139,10 @@ public class CajeroAutomatico  {
 
 		String opcion = "3"; 														//Variable para que el usuario ingrese como opcion en el menu
 		
+		this.limpiarConsola();
+		
 		do { 																		//Bucle
+			
 			
 			System.out.println( " 1) Cuenta de cheques\n"							//Menú
 							  + " 2) Depósito a Tarjeta de Crédito\n"
@@ -163,6 +171,8 @@ public class CajeroAutomatico  {
 
 		Boolean cantidadValida = false; 											//Variable para verificar si la cantidad es válida
 		double cantidadDepositar = 0.0; 											//Variable para guardar la cantidad a depositar  en la cuenta de cheques
+		
+		this.limpiarConsola();
 		
 		do { //Bucle
 			System.out.println("Ingrese la cantidad a depositar"); 					//Preguntar al usuario cuanto quiere depositar
@@ -205,6 +215,8 @@ public class CajeroAutomatico  {
 		Boolean cantidadValida = false; 											//Variable para verificar que el usuario ingresó una cantidad válida
 		double cantidadDepositar = 0.0; 											//Variable para almacenar la cantidad a depositar
 		
+		this.limpiarConsola();
+		
 		do { 																		//Bucle
 			//Le preguntamos al usuario cuanto quiere depositar
 			System.out.println("Ingrese la cantidad a depositar a su tarjeta de credito"); 
@@ -242,12 +254,16 @@ public class CajeroAutomatico  {
 	
 	
 	public void consultarSaldo( Scanner myScan ) { 									//3) Función para consultar el saldo actual
+		
+		this.limpiarConsola();
 		System.out.println( "Saldo disponible: $" + this.getSaldo() ); 				//Mostramos el saldo
 		this.continuar( myScan ); 													//Pausa para luego continuar
 	}
 	
 	
 	public void quejas( Scanner myScan ) { 											// 4)Función para quejas 
+		
+		this.limpiarConsola();
 		System.out.println( "No disponible por el momento, intente más tarde" );
 		this.continuar( myScan ); 													//Pausa para luego continuar
 	}
@@ -264,6 +280,8 @@ public class CajeroAutomatico  {
 	
 	
 	public void ultimosMovimientos( Scanner myScan ) { 								// 5) Mostrar el arreglo de movimientos
+
+		this.limpiarConsola();
 		System.out.println( "Ultimos movimientos"  ); 
 		
 		for( String mov : ultimoMovimientosArray ) { 								//Bucle para iterar el arreglo de movimientos
