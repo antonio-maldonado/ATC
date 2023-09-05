@@ -10,7 +10,7 @@ public class Main {
 		String option = "0";
 		CajeroAutomatico usuario = new CajeroAutomatico();
 		
-		do {//Menú
+		do {					//Menú
 			System.out.println(  " 1) Retirar dinero \n"+
 					             " 2) Hacer depósitos \n"
 					           + " 3) Consultar saldo \n"
@@ -22,38 +22,37 @@ public class Main {
 			option = myScan.nextLine();
 			
 			switch( option ) {
-				case "1": //Opcion 1 Retirar dinero
+				case "1": 											//Opcion 1 Retirar dinero
 					
-					usuario.retirarDinero();
+					usuario.retirarDinero( myScan );
 					break;
 					
-				case "2": //Opcion 2: hacer depósitos
-					usuario.hacerDepositos();
+				case "2": 											//Opcion 2: hacer depósitos
+					usuario.hacerDepositos( myScan );
 					break;
 					
-				case "3": //Opcion 3: consultar saldo
-					usuario.consultarSaldo();
+				case "3": 											//Opcion 3: consultar saldo
+					usuario.consultarSaldo( myScan );
 					break;
 			
-				case "4": //Quejas
-					usuario.quejas();
+				case "4": 											//Quejas
+					usuario.quejas( myScan);
 					break;
 					
-				case "5": //Ver últimos movimientos
-					usuario.ultimosMovimientos();
+				case "5": 											//Ver últimos movimientos
+					usuario.ultimosMovimientos( myScan );
 					break;
 					
-				case "9":  //Salir del cajero
+				case "9":  											//Salir del cajero
 					break;
 					
 				default:
 					System.out.println("Ingrese una opción válida");
 					
 			}
-			//myScan.close();
+			
 		}while( option.charAt(0) !=  '9' );
 		
-		
-		
+		myScan.close();
 	}
 }
