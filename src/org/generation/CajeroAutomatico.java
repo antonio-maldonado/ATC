@@ -48,7 +48,7 @@ public class CajeroAutomatico  {
 	
 	private void continuar( Scanner myScan )  { 									//Funcion para pausar después de un proceso
 		System.out.println( "Presione cualquier tecla para continuar..." );
-		myScan.nextLine();
+		myScan.nextLine();															//Consumimos el salto de linea
 
 		this.limpiarConsola();
 	}
@@ -79,6 +79,7 @@ public class CajeroAutomatico  {
 			if( myScan2.hasNextDouble() ) {											//Si el dato a ingresar  es de tipo Double
 				
 				saldoRetirar = myScan2.nextDouble(); 								//Guardamos la cantidad a retirar
+				myScan2.nextLine();													//Consumimos el salto de linea
 				
 				if( saldoRetirar > saldoDisponibleRetirar || saldoRetirar < 0.0 ) { //Si el saldo a retirar es mayor al posible o es negativo
 					System.out.println("No se puede retirar esa cantidad!");  
@@ -92,8 +93,8 @@ public class CajeroAutomatico  {
 						
 						System.out.println("¿Quieres donar $" + DONACION_CH30 +
 								" para la graduación de ch30? (Y/N)"); 				//Preguntamos al usuario si quiere donar
-						myScan2.nextLine();
-						donar = myScan2.nextLine(); 									//Guardamos la respuesta del usuario
+
+						donar = myScan2.nextLine(); 								//Guardamos la respuesta del usuario
 						
 						
 						if( ( donar.charAt(0) == 'y' || donar.charAt(0) == 'Y' ) ){ //Si el usuario quiere donar
@@ -128,7 +129,7 @@ public class CajeroAutomatico  {
 				
 			}else { 																//Si la cantidad no es de tipo double
 				System.out.println("Cantidad Inválida, Ingrese otra cantidad");
-				myScan2.nextLine();
+				myScan2.nextLine();													//Consumimos el salto de linea
 			}
 			
 		}while( wasWithdrew == false ); 											//Mientras el usuario no haya retirado dinero
@@ -180,6 +181,7 @@ public class CajeroAutomatico  {
 			
 			if( myScan.hasNextDouble()) { 											//Si se ingresó una cantidad double
 				cantidadDepositar = myScan.nextDouble(); 							//Guardamos el valor
+				myScan.nextLine();													//Consumimos el salto de linea
 				
 				if( esMultiplo50( cantidadDepositar ) ) { 							//Si es múltiplo de 50
 					this.setSaldo( cantidadDepositar + this.getSaldo() ); 			//Guardamos la cantidad depositada al saldo
@@ -187,7 +189,7 @@ public class CajeroAutomatico  {
 					//Guardamos el movimiento en el arreglo de movimientos
 					this.setUltimoMoviemiento( fechaMovimiento + DEPOSITO_CHEQUES + cantidadDepositar ); 
 					cantidadValida = true; 											//Para salir del bucle
-					myScan.nextLine(); 												
+					 												
 					
 					System.out.println("Depósito exitoso"); 
 				}else { //Si no es múltiplo de 50
@@ -224,6 +226,7 @@ public class CajeroAutomatico  {
 			
 			if( myScan.hasNextDouble() ) { 											//Si el dato que se ingresó es de tipo double
 				cantidadDepositar = myScan.nextDouble(); 							//Guardamos el dato
+				myScan.nextLine();													//Consumimos el salto de linea
 				
 				if( cantidadDepositar > this.getSaldo() ) { 						//Si la cantidad que se quiere retirar es mayor al saldo actual
 					//No es posible depositar esa cantidad
@@ -238,7 +241,7 @@ public class CajeroAutomatico  {
 				Date fechaMovimiento = new Date(); 									//Guardamos la fecha
 				//Guardamos el movimiento en el arreglo de movimientos
 				this.setUltimoMoviemiento( fechaMovimiento + DEPOSITO_TDC + cantidadDepositar ); 
-				myScan.nextLine(); 	
+			
 				
 			}else { 																//Si el datos no es double
 				System.out.println("Se tiene que ingresar un número"); 				//El dato no es válido
