@@ -92,8 +92,9 @@ public class CajeroAutomatico  {
 						
 						System.out.println("¿Quieres donar $" + DONACION_CH30 +
 								" para la graduación de ch30? (Y/N)"); 				//Preguntamos al usuario si quiere donar
-						donar = myScan2.next(); 									//Guardamos la respuesta del usuario
 						myScan2.nextLine();
+						donar = myScan2.nextLine(); 									//Guardamos la respuesta del usuario
+						
 						
 						if( ( donar.charAt(0) == 'y' || donar.charAt(0) == 'Y' ) ){ //Si el usuario quiere donar
 							if( this.getSaldo() < DONACION_CH30 ) { 				//Si el saldo es menor a la donación

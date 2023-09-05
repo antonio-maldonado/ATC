@@ -23,7 +23,6 @@ public class Main {
 			
 			switch( option ) {
 				case "1": 											//Opcion 1 Retirar dinero
-					
 					usuario.retirarDinero( myScan );
 					break;
 					
